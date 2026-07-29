@@ -22,7 +22,7 @@ data:
 
     [api]
     bind = "0.0.0.0:8080"
-    secret = "CHANGE_THIS_SECRET_KEY_FOR_PRODUCTION_SECURITY_12345"
+    secret = "0e7a4b893f12c98d65431201feba98765432109876543210123456789abcdef0"
 
     [integration]
     enabled = ["mqtt"]
