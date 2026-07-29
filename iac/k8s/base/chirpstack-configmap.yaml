@@ -9,7 +9,7 @@ data:
     level = "info"
 
     [postgresql]
-    dsn = "postgresql://chirpstack:chirpstack_password@postgres.lorawan.svc.cluster.local:5432/chirpstack?sslmode=disable"
+    dsn = "postgresql://chirpstack:BradSecurePostgresPassword2026!@postgres.lorawan.svc.cluster.local:5432/chirpstack?sslmode=disable"
     max_open_connections = 10
 
     [redis]
@@ -40,3 +40,10 @@ data:
 
     [regional_parameters]
     id = "eu868"
+
+    [gateway]
+    driver = "mqtt"
+
+    [gateway.backend.mqtt]
+    topic_prefix = "eu868"
+    server = "tcp://mosquitto.lorawan.svc.cluster.local:1883"
