@@ -1,10 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: chirpstack-lorawan-server
+  name: lorawan-server
   namespace: argocd
 spec:
-  project: lorawan-server
+  project: default
   source:
     repoURL: 'https://github.com/bradtech/lorawan-server.git'
     targetRevision: HEAD

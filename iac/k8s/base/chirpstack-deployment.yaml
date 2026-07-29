@@ -18,11 +18,17 @@ spec:
       containers:
       - name: chirpstack
         image: chirpstack/chirpstack:4.11.0
+        args:
+        - -c
+        - /etc/chirpstack
         ports:
         - containerPort: 8080
           name: api-http
         - containerPort: 8090
           name: api-grpc
+        volumeMounts:
+        - name: config
+          mountPath: /etc/chirpstack
         resources:
           limits:
             cpu: 500m
@@ -30,3 +36,7 @@ spec:
           requests:
             cpu: 100m
             memory: 128Mi
+      volumes:
+      - name: config
+        configMap:
+          name: chirpstack-config

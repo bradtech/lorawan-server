@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: lorawan
 
 resources:
+- chirpstack-configmap.yaml
 - chirpstack-deployment.yaml
 - chirpstack-service.yaml
 - chirpstack-ingress.yaml
