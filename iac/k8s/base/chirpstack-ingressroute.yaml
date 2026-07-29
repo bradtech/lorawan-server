@@ -23,7 +23,7 @@ spec:
     - name: strip-mqtt-prefix
     services:
     - name: mosquitto
-      port: 9001
+      port: ws
   - kind: Rule
     match: Host(`eu1.lorawan.brad.technology`)
     services:
