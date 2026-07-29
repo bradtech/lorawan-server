@@ -1,11 +1,17 @@
-# ChirpStack Gateway Bridge Configuration for Dragino DLOS8N (Semtech UDP Packet Forwarder)
+# ChirpStack Gateway Bridge Configuration for Dragino DLOS8N
 
 [integration.mqtt]
-event_topic_template = "eu868/gateway/{{ .GatewayID }}/event/{{ .EventType }}"
-command_topic_template = "eu868/gateway/{{ .GatewayID }}/command/{{ .CommandType }}"
-server = "tcp://mosquitto:1883"
+event_topic_template="eu868/gateway/{{ .GatewayID }}/event/{{ .EventType }}"
+command_topic_template="eu868/gateway/{{ .GatewayID }}/command/{{ .CommandType }}"
+
+[integration.mqtt.auth]
+type="generic"
+
+[integration.mqtt.auth.generic]
+servers=[
+  "tcp://mosquitto:1883"
+]
 
 [backend.semtech_udp]
-ip = "0.0.0.0"
-port = 1700
-skip_crc_check = false
+ip="0.0.0.0"
+port=1700

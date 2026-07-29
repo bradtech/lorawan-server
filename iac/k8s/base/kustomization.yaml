@@ -7,9 +7,11 @@ resources:
 - chirpstack-configmap.yaml
 - chirpstack-deployment.yaml
 - chirpstack-service.yaml
-- chirpstack-ingress.yaml
+- chirpstack-ingressroute.yaml
+- gateway-bridge-configmap.yaml
 - gateway-bridge-deployment.yaml
 - gateway-bridge-service.yaml
+- gateway-bridge-ingressroute-udp.yaml
 - postgres-deployment.yaml
 - postgres-service.yaml
 - redis-deployment.yaml
