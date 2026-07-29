@@ -10,6 +10,12 @@ resources:
 - chirpstack-ingress.yaml
 - gateway-bridge-deployment.yaml
 - gateway-bridge-service.yaml
+- postgres-deployment.yaml
+- postgres-service.yaml
+- redis-deployment.yaml
+- redis-service.yaml
+- mosquitto-deployment.yaml
+- mosquitto-service.yaml
 
 images:
 - name: chirpstack/chirpstack
