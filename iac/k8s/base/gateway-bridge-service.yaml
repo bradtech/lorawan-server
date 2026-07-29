@@ -4,11 +4,12 @@ metadata:
   name: gateway-bridge
   namespace: lorawan
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
   - name: semtech-udp
     port: 1700
     targetPort: 1700
+    nodePort: 31700
     protocol: UDP
   selector:
     app: gateway-bridge
