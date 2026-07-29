@@ -1,4 +1,14 @@
 apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: strip-mqtt-prefix
+  namespace: lorawan
+spec:
+  stripPrefix:
+    prefixes:
+      - /mqtt
+---
+apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: chirpstack
@@ -7,6 +17,13 @@ spec:
   entryPoints:
   - websecure
   routes:
+  - kind: Rule
+    match: Host(`eu1.lorawan.brad.technology`) && PathPrefix(`/mqtt`)
+    middlewares:
+    - name: strip-mqtt-prefix
+    services:
+    - name: mosquitto
+      port: 9001
   - kind: Rule
     match: Host(`eu1.lorawan.brad.technology`)
     services:

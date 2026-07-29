@@ -17,6 +17,9 @@ data:
       "tcp://mosquitto.lorawan.svc.cluster.local:1883"
     ]
 
+    [backend]
+    type="semtech_udp"
+
     [backend.semtech_udp]
     ip="0.0.0.0"
     port=1700

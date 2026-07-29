@@ -4,10 +4,14 @@ metadata:
   name: mosquitto
   namespace: lorawan
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
   - port: 1883
     targetPort: 1883
+    nodePort: 31883
     name: mqtt
+  - port: 9001
+    targetPort: 9001
+    name: ws
   selector:
     app: mosquitto
