@@ -1,0 +1,32 @@
+# ChirpStack v4 Configuration File
+[logging]
+level = "info"
+
+[postgresql]
+ip_version = 4
+host = "postgres"
+port = 5432
+dbname = "chirpstack"
+user = "chirpstack"
+password = "chirpstack_password"
+max_open_connections = 10
+
+[redis]
+servers = ["redis://redis:6379"]
+
+[network]
+enabled_regions = ["eu868"]
+
+[api]
+bind = "0.0.0.0:8080"
+secret = "CHANGE_THIS_SECRET_KEY_FOR_PRODUCTION_SECURITY_12345"
+
+[integration]
+enabled = ["mqtt"]
+
+[integration.mqtt]
+server = "tcp://mosquitto:1883"
+json = true
+
+[gateway]
+client_cert_lifetime = "10y"

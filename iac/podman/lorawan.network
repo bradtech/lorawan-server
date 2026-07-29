@@ -1,0 +1,3 @@
+[Network]
+NetworkName=lorawan_net
+Driver=bridge

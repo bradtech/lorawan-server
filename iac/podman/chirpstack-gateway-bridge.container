@@ -1,0 +1,17 @@
+[Unit]
+Description=ChirpStack Gateway Bridge (Semtech UDP Packet Forwarder listener for Dragino DLOS8N)
+After=mosquitto.service
+
+[Container]
+Image=docker.io/chirpstack/chirpstack-gateway-bridge:4.0.10
+ContainerName=chirpstack-gateway-bridge
+Network=lorawan_net
+PublishPort=1700:1700/udp
+Volume=%h/CODE/BRAD2026/lorawan-server/config/chirpstack-gateway-bridge:/etc/chirpstack-gateway-bridge:ro
+User=1000:1000
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

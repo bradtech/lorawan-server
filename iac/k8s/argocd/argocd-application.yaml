@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: chirpstack-lorawan-server
+  namespace: argocd
+spec:
+  project: lorawan-server
+  source:
+    repoURL: 'https://github.com/bradtech/lorawan-server.git'
+    targetRevision: HEAD
+    path: iac/k8s/base
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: lorawan
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true

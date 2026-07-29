@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: lorawan-server
+  namespace: argocd
+spec:
+  description: ChirpStack v4 LoRaWAN Server Infrastructure
+  sourceRepos:
+  - 'https://github.com/bradtech/lorawan-server.git'
+  destinations:
+  - namespace: lorawan
+    server: 'https://kubernetes.default.svc'
+  clusterResourceWhitelist:
+  - group: ''
+    kind: Namespace

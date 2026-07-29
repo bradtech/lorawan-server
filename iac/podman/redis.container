@@ -1,0 +1,15 @@
+[Unit]
+Description=Redis Cache for ChirpStack
+After=network.target
+
+[Container]
+Image=docker.io/library/redis:7-alpine
+ContainerName=redis
+Network=lorawan_net
+User=1000:1000
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,17 @@
+[Unit]
+Description=Mosquitto MQTT Broker
+After=network.target
+
+[Container]
+Image=docker.io/library/eclipse-mosquitto:2.0.18
+ContainerName=mosquitto
+Network=lorawan_net
+PublishPort=1883:1883
+Volume=%h/CODE/BRAD2026/lorawan-server/config/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+User=1000:1000
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

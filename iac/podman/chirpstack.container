@@ -1,0 +1,17 @@
+[Unit]
+Description=ChirpStack v4 LoRaWAN Network Server
+After=postgres.service redis.service mosquitto.service
+
+[Container]
+Image=docker.io/chirpstack/chirpstack:4.11.0
+ContainerName=chirpstack
+Network=lorawan_net
+PublishPort=8080:8080
+Volume=%h/CODE/BRAD2026/lorawan-server/config/chirpstack:/etc/chirpstack:ro
+User=1000:1000
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

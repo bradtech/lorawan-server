@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: lorawan
+
+resources:
+- chirpstack-deployment.yaml
+- chirpstack-service.yaml
+- gateway-bridge-deployment.yaml
+- gateway-bridge-service.yaml
+
+images:
+- name: chirpstack/chirpstack
+  newTag: 4.11.0
+- name: chirpstack/chirpstack-gateway-bridge
+  newTag: 4.0.10

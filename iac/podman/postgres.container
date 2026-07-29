@@ -1,0 +1,18 @@
+[Unit]
+Description=PostgreSQL Database for ChirpStack
+After=network.target
+
+[Container]
+Image=docker.io/library/postgres:14-alpine
+ContainerName=postgres
+Network=lorawan_net
+Environment=POSTGRES_USER=chirpstack
+Environment=POSTGRES_PASSWORD=chirpstack_password
+Environment=POSTGRES_DB=chirpstack
+User=1000:1000
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
