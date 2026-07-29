@@ -3,12 +3,7 @@
 level = "info"
 
 [postgresql]
-ip_version = 4
-host = "postgres"
-port = 5432
-dbname = "chirpstack"
-user = "chirpstack"
-password = "chirpstack_password"
+dsn = "postgres://chirpstack:chirpstack_password@postgres:5432/chirpstack?sslmode=disable"
 max_open_connections = 10
 
 [redis]

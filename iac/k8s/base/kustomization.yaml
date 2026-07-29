@@ -14,6 +14,7 @@ resources:
 - postgres-service.yaml
 - redis-deployment.yaml
 - redis-service.yaml
+- mosquitto-configmap.yaml
 - mosquitto-deployment.yaml
 - mosquitto-service.yaml
 

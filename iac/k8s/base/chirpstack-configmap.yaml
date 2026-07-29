@@ -9,16 +9,13 @@ data:
     level = "info"
 
     [postgresql]
-    ip_version = 4
-    host = "postgres"
-    port = 5432
-    dbname = "chirpstack"
-    user = "chirpstack"
-    password = "chirpstack_password"
+    dsn = "postgresql://chirpstack:chirpstack_password@postgres.lorawan.svc.cluster.local:5432/chirpstack?sslmode=disable"
     max_open_connections = 10
 
     [redis]
-    servers = ["redis://redis:6379"]
+    servers = [
+      "redis://redis.lorawan.svc.cluster.local:6379/0"
+    ]
 
     [network]
     enabled_regions = ["eu868"]
@@ -31,8 +28,15 @@ data:
     enabled = ["mqtt"]
 
     [integration.mqtt]
-    server = "tcp://mosquitto:1883"
+    server = "tcp://mosquitto.lorawan.svc.cluster.local:1883"
     json = true
 
     [gateway]
     client_cert_lifetime = "10y"
+
+  region_eu868.toml: |
+    [user_facing_band]
+    name = "EU868"
+
+    [regional_parameters]
+    id = "eu868"
