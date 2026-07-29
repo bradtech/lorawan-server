@@ -1,6 +1,6 @@
 # Lorawan Server - ChirpStack v4 Infrastructure as Code (IaC) & GitOps
 
-This repository provides full Infrastructure as Code (IaC) and GitOps manifests to deploy an open-source, standalone **ChirpStack v4** LoRaWAN Network Server stack to replace TTN (The Things Network) for Brad Technology probes (`b23`, `b25`, `b26`).
+This repository provides full Infrastructure as Code (IaC) and GitOps manifests to deploy an open-source, standalone **ChirpStack v4** LoRaWAN Network Server stack.
 
 ---
 

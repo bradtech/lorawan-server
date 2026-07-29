@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chirpstack
+  namespace: lorawan
+  labels:
+    app: chirpstack
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chirpstack
+  template:
+    metadata:
+      labels:
+        app: chirpstack
+    spec:
+      containers:
+      - name: chirpstack
+        image: chirpstack/chirpstack:4.11.0
+        ports:
+        - containerPort: 8080
+          name: api-http
+        - containerPort: 8090
+          name: api-grpc
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi

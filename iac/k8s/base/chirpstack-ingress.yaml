@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: chirpstack-ingress
+  namespace: lorawan
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
+spec:
+  ingressClassName: traefik
+  tls:
+  - hosts:
+    - eu1.lorawan.brad.technology
+    secretName: eu1-lorawan-brad-technology-tls
+  rules:
+  - host: eu1.lorawan.brad.technology
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: chirpstack
+            port:
+              number: 8080

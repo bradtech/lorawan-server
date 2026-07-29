@@ -6,6 +6,7 @@ namespace: lorawan
 resources:
 - chirpstack-deployment.yaml
 - chirpstack-service.yaml
+- chirpstack-ingress.yaml
 - gateway-bridge-deployment.yaml
 - gateway-bridge-service.yaml
 
