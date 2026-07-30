@@ -42,6 +42,8 @@ spec:
         volumeMounts:
         - name: config
           mountPath: /etc/chirpstack-gateway-bridge
+        - name: tls
+          mountPath: /etc/gateway-bridge/certs
         resources:
           limits:
             cpu: 200m
@@ -53,3 +55,6 @@ spec:
       - name: config
         configMap:
           name: gateway-bridge-config
+      - name: tls
+        secret:
+          secretName: gateway-bridge-tls

@@ -8,7 +8,7 @@ data:
     [integration.mqtt]
     event_topic_template="eu868/gateway/{{ .GatewayID }}/event/{{ .EventType }}"
     state_topic_template="eu868/gateway/{{ .GatewayID }}/state/{{ .StateType }}"
-    command_topic_template="eu868/gateway/{{ .GatewayID }}/command/{{ .CommandType }}"
+    command_topic_template="eu868/gateway/{{ .GatewayID }}/command/+"
 
     [integration.mqtt.auth]
     type="generic"
@@ -23,6 +23,8 @@ data:
 
     [backend.basic_station]
     bind="0.0.0.0:3001"
+    tls_cert="/etc/gateway-bridge/certs/tls.crt"
+    tls_key="/etc/gateway-bridge/certs/tls.key"
     stats_interval="30s"
     ping_interval="1m0s"
 

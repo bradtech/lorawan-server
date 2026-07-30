@@ -1,4 +1,12 @@
 apiVersion: traefik.io/v1alpha1
+kind: ServersTransport
+metadata:
+  name: gateway-bridge-transport
+  namespace: lorawan
+spec:
+  insecureSkipVerify: true
+---
+apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
   name: redirect-to-https
@@ -58,6 +66,8 @@ spec:
     services:
     - name: gateway-bridge
       port: 3001
+      scheme: https
+      serversTransport: gateway-bridge-transport
   - kind: Rule
     match: Host(`eu1.lorawan.brad.technology`) && PathPrefix(`/router-ns`)
     middlewares:
@@ -66,6 +76,8 @@ spec:
     services:
     - name: gateway-bridge
       port: 3001
+      scheme: https
+      serversTransport: gateway-bridge-transport
   - kind: Rule
     match: Host(`eu1.lorawan.brad.technology`) && PathPrefix(`/gateway`)
     middlewares:
@@ -74,6 +86,8 @@ spec:
     services:
     - name: gateway-bridge
       port: 3001
+      scheme: https
+      serversTransport: gateway-bridge-transport
   - kind: Rule
     match: Host(`eu1.lorawan.brad.technology`)
     services:
