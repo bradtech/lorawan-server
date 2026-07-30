@@ -8,6 +8,11 @@ spec:
   - websecure
   routes:
   - kind: Rule
+    match: Host(`eu1.lorawan.brad.technology`) && Headers(`Upgrade`, `websocket`)
+    services:
+    - name: gateway-bridge
+      port: 3001
+  - kind: Rule
     match: Host(`eu1.lorawan.brad.technology`)
     services:
     - name: chirpstack

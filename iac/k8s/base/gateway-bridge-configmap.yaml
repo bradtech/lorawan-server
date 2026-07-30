@@ -18,8 +18,9 @@ data:
     ]
 
     [backend]
-    type="semtech_udp"
+    type="basic_station"
 
-    [backend.semtech_udp]
-    ip="0.0.0.0"
-    port=1700
+    [backend.basic_station]
+    bind="0.0.0.0:3001"
+    stats_interval="30s"
+    ping_interval="1m0s"

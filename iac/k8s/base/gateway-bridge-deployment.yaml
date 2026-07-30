@@ -18,10 +18,24 @@ spec:
       containers:
       - name: gateway-bridge
         image: chirpstack/chirpstack-gateway-bridge:4.0.10
+        env:
+        - name: GENERAL__LOG_LEVEL
+          value: "5"
+        - name: BACKEND__TYPE
+          value: "basic_station"
+        args:
+        - -c
+        - /etc/chirpstack-gateway-bridge/chirpstack-gateway-bridge.toml
         ports:
+        - containerPort: 3001
+          name: lns
+          protocol: TCP
         - containerPort: 1700
           name: semtech-udp
           protocol: UDP
+        volumeMounts:
+        - name: config
+          mountPath: /etc/chirpstack-gateway-bridge
         resources:
           limits:
             cpu: 200m
@@ -29,3 +43,7 @@ spec:
           requests:
             cpu: 50m
             memory: 64Mi
+      volumes:
+      - name: config
+        configMap:
+          name: gateway-bridge-config
