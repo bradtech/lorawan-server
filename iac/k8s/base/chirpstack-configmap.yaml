@@ -38,8 +38,9 @@ data:
     id = "eu868"
 
     [gateway]
+
     [gateway.backend]
-    enabled = "mqtt"
+    enabled = ["mqtt"]
 
     [gateway.backend.mqtt]
     topic_prefix = "eu868"
