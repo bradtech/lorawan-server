@@ -7,6 +7,7 @@ data:
   chirpstack-gateway-bridge.toml: |
     [integration.mqtt]
     event_topic_template="eu868/gateway/{{ .GatewayID }}/event/{{ .EventType }}"
+    state_topic_template="eu868/gateway/{{ .GatewayID }}/state/{{ .StateType }}"
     command_topic_template="eu868/gateway/{{ .GatewayID }}/command/{{ .CommandType }}"
 
     [integration.mqtt.auth]
