@@ -28,6 +28,10 @@ data:
     stats_interval="30s"
     ping_interval="1m0s"
 
+    join_eui_filter=[
+      ["8c1f640000000000", "8c1f64ffffffffff"]
+    ]
+
     [[backend.basic_station.concentrators]]
       [backend.basic_station.concentrators.multi_sf]
       frequencies=[

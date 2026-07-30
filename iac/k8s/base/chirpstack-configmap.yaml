@@ -24,6 +24,10 @@ data:
     id = "eu868"
     description = "EU868"
 
+    join_eui_prefixes = [
+      "8c1f640000000000/24"
+    ]
+
     [regions.gateway.backend.mqtt]
     server = "tcp://mosquitto.lorawan.svc.cluster.local:1883"
     topic_prefix = "eu868"
