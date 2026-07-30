@@ -1,4 +1,25 @@
 apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-to-https
+  namespace: lorawan
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: force-wss-headers
+  namespace: lorawan
+spec:
+  headers:
+    customRequestHeaders:
+      X-Forwarded-Proto: "https"
+      X-Forwarded-Port: "443"
+---
+apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: chirpstack-web
@@ -8,27 +29,9 @@ spec:
   - web
   routes:
   - kind: Rule
-    match: Host(`eu1.lorawan.brad.technology`) && PathPrefix(`/router-info`)
-    services:
-    - name: gateway-bridge
-      port: 3001
-  - kind: Rule
-    match: Host(`eu1.lorawan.brad.technology`) && PathPrefix(`/router-ns`)
-    services:
-    - name: gateway-bridge
-      port: 3001
-  - kind: Rule
-    match: Host(`eu1.lorawan.brad.technology`) && PathPrefix(`/gateway`)
-    services:
-    - name: gateway-bridge
-      port: 3001
-  - kind: Rule
-    match: Host(`eu1.lorawan.brad.technology`) && Headers(`Upgrade`, `websocket`)
-    services:
-    - name: gateway-bridge
-      port: 3001
-  - kind: Rule
     match: Host(`eu1.lorawan.brad.technology`)
+    middlewares:
+    - name: redirect-to-https
     services:
     - name: chirpstack
       port: 8080
@@ -44,21 +47,29 @@ spec:
   routes:
   - kind: Rule
     match: Host(`eu1.lorawan.brad.technology`) && PathPrefix(`/router-info`)
+    middlewares:
+    - name: force-wss-headers
     services:
     - name: gateway-bridge
       port: 3001
   - kind: Rule
     match: Host(`eu1.lorawan.brad.technology`) && PathPrefix(`/router-ns`)
+    middlewares:
+    - name: force-wss-headers
     services:
     - name: gateway-bridge
       port: 3001
   - kind: Rule
     match: Host(`eu1.lorawan.brad.technology`) && PathPrefix(`/gateway`)
+    middlewares:
+    - name: force-wss-headers
     services:
     - name: gateway-bridge
       port: 3001
   - kind: Rule
     match: Host(`eu1.lorawan.brad.technology`) && Headers(`Upgrade`, `websocket`)
+    middlewares:
+    - name: force-wss-headers
     services:
     - name: gateway-bridge
       port: 3001
