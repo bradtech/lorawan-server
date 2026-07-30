@@ -21,6 +21,23 @@ spec:
         args:
         - -c
         - /etc/chirpstack
+        env:
+        - name: POSTGRESQL__DSN
+          valueFrom:
+            secretKeyRef:
+              name: lorawan-secrets
+              key: POSTGRES_DSN
+        - name: API__SECRET
+          valueFrom:
+            secretKeyRef:
+              name: lorawan-secrets
+              key: CHIRPSTACK_SECRET_KEY
+        - name: REGION_EU868__GATEWAY__BACKEND__TYPE
+          value: "mqtt"
+        - name: REGION_EU868__GATEWAY__BACKEND__MQTT__TOPIC_PREFIX
+          value: "eu868"
+        - name: REGION_EU868__GATEWAY__BACKEND__MQTT__SERVER
+          value: "tcp://mosquitto.lorawan.svc.cluster.local:1883"
         ports:
         - containerPort: 8080
           name: api-http

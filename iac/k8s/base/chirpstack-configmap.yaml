@@ -6,7 +6,7 @@ metadata:
 data:
   chirpstack.toml: |
     [logging]
-    level = "info"
+    level = "debug"
 
     [postgresql]
     dsn = "postgresql://chirpstack:BradSecurePostgresPassword2026!@postgres.lorawan.svc.cluster.local:5432/chirpstack?sslmode=disable"
@@ -29,10 +29,6 @@ data:
 
     [integration.mqtt]
     server = "tcp://mosquitto.lorawan.svc.cluster.local:1883"
-    json = true
-
-    [gateway]
-    client_cert_lifetime = "10y"
 
   region_eu868.toml: |
     [user_facing_band]
@@ -41,9 +37,7 @@ data:
     [regional_parameters]
     id = "eu868"
 
-    [gateway]
-    driver = "mqtt"
-
     [gateway.backend.mqtt]
-    topic_prefix = "eu868"
     server = "tcp://mosquitto.lorawan.svc.cluster.local:1883"
+    topic_prefix = "eu868"
+    json = false
