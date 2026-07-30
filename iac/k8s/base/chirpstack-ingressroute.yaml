@@ -5,6 +5,7 @@ metadata:
   namespace: lorawan
 spec:
   entryPoints:
+  - web
   - websecure
   routes:
   - kind: Rule
