@@ -72,14 +72,6 @@ spec:
     - name: gateway-bridge
       port: 3001
   - kind: Rule
-    match: Host(`eu1.lorawan.brad.technology`) && Headers(`Upgrade`, `websocket`)
-    middlewares:
-    - name: force-wss-headers
-      namespace: lorawan
-    services:
-    - name: gateway-bridge
-      port: 3001
-  - kind: Rule
     match: Host(`eu1.lorawan.brad.technology`)
     services:
     - name: chirpstack
