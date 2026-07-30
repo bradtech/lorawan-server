@@ -17,6 +17,7 @@ spec:
   headers:
     customRequestHeaders:
       X-Forwarded-Proto: "https"
+      X-Forwarded-Scheme: "https"
       X-Forwarded-Port: "443"
 ---
 apiVersion: traefik.io/v1alpha1
@@ -32,6 +33,7 @@ spec:
     match: Host(`eu1.lorawan.brad.technology`)
     middlewares:
     - name: redirect-to-https
+      namespace: lorawan
     services:
     - name: chirpstack
       port: 8080
@@ -49,6 +51,7 @@ spec:
     match: Host(`eu1.lorawan.brad.technology`) && PathPrefix(`/router-info`)
     middlewares:
     - name: force-wss-headers
+      namespace: lorawan
     services:
     - name: gateway-bridge
       port: 3001
@@ -56,6 +59,7 @@ spec:
     match: Host(`eu1.lorawan.brad.technology`) && PathPrefix(`/router-ns`)
     middlewares:
     - name: force-wss-headers
+      namespace: lorawan
     services:
     - name: gateway-bridge
       port: 3001
@@ -63,6 +67,7 @@ spec:
     match: Host(`eu1.lorawan.brad.technology`) && PathPrefix(`/gateway`)
     middlewares:
     - name: force-wss-headers
+      namespace: lorawan
     services:
     - name: gateway-bridge
       port: 3001
@@ -70,6 +75,7 @@ spec:
     match: Host(`eu1.lorawan.brad.technology`) && Headers(`Upgrade`, `websocket`)
     middlewares:
     - name: force-wss-headers
+      namespace: lorawan
     services:
     - name: gateway-bridge
       port: 3001
