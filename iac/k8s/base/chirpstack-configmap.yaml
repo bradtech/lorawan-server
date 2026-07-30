@@ -20,6 +20,14 @@ data:
     [network]
     enabled_regions = ["eu868"]
 
+    [[regions]]
+    id = "eu868"
+    description = "EU868"
+
+    [regions.gateway.backend.mqtt]
+    server = "tcp://mosquitto.lorawan.svc.cluster.local:1883"
+    topic_prefix = "eu868"
+
     [api]
     bind = "0.0.0.0:8080"
     secret = "0e7a4b893f12c98d65431201feba98765432109876543210123456789abcdef0"
@@ -28,20 +36,4 @@ data:
     enabled = ["mqtt"]
 
     [integration.mqtt]
-    server = "tcp://mosquitto.lorawan.svc.cluster.local:1883"
-
-  region_eu868.toml: |
-    [user_facing_band]
-    name = "EU868"
-
-    [regional_parameters]
-    id = "eu868"
-
-    [gateway]
-
-    [gateway.backend]
-    enabled = ["mqtt"]
-
-    [gateway.backend.mqtt]
-    topic_prefix = "eu868"
     server = "tcp://mosquitto.lorawan.svc.cluster.local:1883"
