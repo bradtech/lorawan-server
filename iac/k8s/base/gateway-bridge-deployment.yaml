@@ -29,6 +29,10 @@ spec:
           value: "eu868/gateway/{{ .GatewayID }}/state/{{ .StateType }}"
         - name: INTEGRATION__MQTT__COMMAND_TOPIC_TEMPLATE
           value: "eu868/gateway/{{ .GatewayID }}/command/+"
+        - name: BACKEND__BASIC_STATION__TLS_CERT
+          value: "/etc/gateway-bridge/certs/tls.crt"
+        - name: BACKEND__BASIC_STATION__TLS_KEY
+          value: "/etc/gateway-bridge/certs/tls.key"
         args:
         - -c
         - /etc/chirpstack-gateway-bridge/chirpstack-gateway-bridge.toml
